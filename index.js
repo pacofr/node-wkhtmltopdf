@@ -48,7 +48,8 @@ function wkhtmltopdf(input, options, callback) {
     Array.prototype.splice.apply(keys, spliceArgs);
   }
 
-  var args = [wkhtmltopdf.command, '--quiet'];
+  var args = ["/usr/bin/wkhtmltopdf", '--quiet'];
+  //var args = [wkhtmltopdf.command, '--quiet'];
   keys.forEach(function(key) {
     var val = options[key];
     if (key === 'ignore' || key === 'debug' || key === 'debugStdOut') { // skip adding the ignore/debug keys
@@ -98,7 +99,7 @@ function wkhtmltopdf(input, options, callback) {
     // this nasty business prevents piping problems on linux
     // The return code should be that of wkhtmltopdf and not of cat
     // http://stackoverflow.com/a/18295541/1705056
-    var child = spawn(wkhtmltopdf.shell, ['-c', args.join(' ') + ' | cat ; exit 0']);
+    var child = spawn("/bin/sh", ['-c', args.join(' ') + ' | cat ; exit 0']);
    // var child = spawn(wkhtmltopdf.shell, ['-c', args.join(' ') + ' | cat ; exit ${PIPESTATUS[0]}']);
   }
 
