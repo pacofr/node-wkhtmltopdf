@@ -48,8 +48,7 @@ function wkhtmltopdf(input, options, callback) {
     Array.prototype.splice.apply(keys, spliceArgs);
   }
 
-  var args = ["/usr/bin/wkhtmltopdf", '--quiet'];
-  //var args = [wkhtmltopdf.command, '--quiet'];
+  var args = [wkhtmltopdf.command, '--quiet'];
   keys.forEach(function(key) {
     var val = options[key];
     if (key === 'ignore' || key === 'debug' || key === 'debugStdOut') { // skip adding the ignore/debug keys
